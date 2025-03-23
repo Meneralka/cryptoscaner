@@ -1,4 +1,6 @@
+from sqlalchemy import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from datetime import datetime
 
 
 class Base(DeclarativeBase):
@@ -13,4 +15,4 @@ class CryptoPair(Base):
     price: Mapped[float]
     marketPair: Mapped[str]
     marketId: Mapped[int]
-    lastUpdated: Mapped[str]
+    lastUpdated: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
