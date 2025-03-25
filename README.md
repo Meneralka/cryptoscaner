@@ -30,7 +30,7 @@ docker run -d --name kafka --network kafka-network -p 9092:9092 -p 29092:29092 -
 ```bash
 docker run --rm -it --network kafka-network confluentinc/cp-kafka:latest kafka-topics.sh --create --topic crypto-pairs --bootstrap-server kafka:29092 --partitions 1 --replication-factor 1
 ```
-Может возникнуть ошибка, связанная с тем, что файл `kafka-topics.sh` не найден. В этом случае попробуйте прописать эту же команду, но уже без расширения - 'kafka-topics'
+Может возникнуть ошибка, связанная с тем, что файл `kafka-topics.sh` не найден. В этом случае попробуйте прописать эту же команду, но уже без расширения - `kafka-topics`
 
 ### 5. Запуск kafka-UI (По желанию)
 ```bash
