@@ -2,7 +2,8 @@
 ## Требования
 
 - **Docker**: Установленный Docker Desktop (Windows/Mac) или Docker на Linux.
-- **Python**: Версия 3.7+ 
+- **Python**: Версия 3.10+
+- Создать папку проекта и настроить для неё venv (автоматически в PyCharm)
 
 ## Установка и запуск
 
@@ -35,4 +36,8 @@ docker run --rm -it --network kafka-network confluentinc/cp-kafka:latest kafka-t
 ### 5. Запуск kafka-UI (По желанию)
 ```bash
 docker run -d --name kafka-ui --network kafka-network -p 8080:8080 -e KAFKA_CLUSTERS_0_NAME=local -e KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=host.docker.internal:9092 provectuslabs/kafka-ui:latest
+```
+### Установка зависимостей для Python
+```Bash
+pip install -r requirements.txt
 ```
