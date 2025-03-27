@@ -1,9 +1,7 @@
 import logging
 import asyncio
-import signal
 
-from kafka.config import settings
-from parser.schema import CryptoPair
+from config import settings
 from parser.coinmarketcup import CoinMarketCup, Currencies
 
 
