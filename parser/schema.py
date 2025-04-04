@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class CryptoPair(BaseModel):
+class Crypto(BaseModel):
     marketUrl: str
     price: float
     marketPair: str
