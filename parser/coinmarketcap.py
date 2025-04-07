@@ -15,6 +15,7 @@ class Currencies(Enum):
     XRP = 'xrp'
     BNB = 'bnb'
     SOL = 'solana'
+    OM = 'mantra'
 
 
 class CoinMarketCup:

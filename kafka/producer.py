@@ -2,7 +2,7 @@ import logging
 import asyncio
 
 from config import settings
-from parser.coinmarketcup import CoinMarketCup, Currencies
+from parser.coinmarketcap import CoinMarketCup, Currencies
 
 
 from confluent_kafka import Producer
@@ -16,12 +16,13 @@ async def main():
 
     while True:
         try:
-            pairs = await cmc.get_pairs(Currencies.ETH)
+            pairs = await cmc.get_pairs(Currencies.OM)
             for pair in pairs:
                 pair_json = pair.model_dump_json()
                 producer.produce(
-                settings.kafka.topic,
-                value=pair_json)
+                    settings.kafka.topic,
+                    value=pair_json,
+                    key=f'OM/USDT')
             producer.flush()
             await asyncio.sleep(30)
 

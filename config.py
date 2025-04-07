@@ -1,4 +1,3 @@
-from threading import settrace
 from typing import Dict
 
 from pydantic import BaseModel
@@ -22,7 +21,7 @@ class KafkaSettings(BaseModel):
     consumer_config: Dict = {
         'bootstrap.servers': bootstrap_servers,
         'group.id': 'crypto_worker_group',
-        'auto.offset.reset': 'earliest'
+        'auto.offset.reset': 'latest'
     }
 
 class Settings(BaseSettings):
@@ -31,5 +30,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-
