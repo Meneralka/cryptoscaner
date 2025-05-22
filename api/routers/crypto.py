@@ -23,11 +23,15 @@ async def list_of_crypto(session: sessionDep):
     """
 
     query = select(CryptoPair.marketPair,
-                   (func.max(CryptoPair.price) - func.min(CryptoPair.price)).label('spread')
+                   (func.max(CryptoPair.price) - func.min(CryptoPair.price)).label('spread'),
+                   ((func.max(CryptoPair.price) - func.min(CryptoPair.price)) / (func.min(CryptoPair.price) // 100)).label('percent')
                    ).group_by(CryptoPair.marketPair)
 
     result = await session.execute(query)
-    return {'data':[{pair: spread} for pair, spread in result.all()], 'statusCode': 200}
+    data = result.all()
+    return {'data':[{'marketPair': pair,
+                     'spreadUSDT': spread,
+                     'percent': percent} for pair, spread, percent in data], 'statusCode': 200}
 
 @router.get('/best_pairs')
 async def best_pairs(session: sessionDep, active: str ='BTC/USDT'):

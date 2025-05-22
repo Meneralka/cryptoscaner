@@ -48,7 +48,12 @@ class CoinMarketCup:
                 if data['status']['error_code'] != '0':
                     raise Exception(f'Failed to fetch data: {data["status"]["error_message"]}')
 
-                return [Crypto(marketId=pair['marketId'], exchangeSlug=pair['exchangeSlug'], price=pair['price'], marketUrl=pair['marketUrl'], marketPair=pair['marketPair']) for pair in pairs]
+                return [Crypto(
+                    marketId=pair['marketId'],
+                    exchangeSlug=pair['exchangeSlug'],
+                    price=pair['price'],
+                    marketUrl=pair['marketUrl'],
+                    marketPair=pair['marketPair']) for pair in pairs]
 
 
 async def main():
